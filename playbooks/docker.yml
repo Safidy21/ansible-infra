@@ -1,0 +1,6 @@
+---
+- name: Installer Docker sur les serveurs du lab
+  hosts: lab
+  become: true
+  roles:
+    - docker

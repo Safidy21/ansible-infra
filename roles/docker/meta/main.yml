@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: docker
+  namespace: safidy21
+  author: Safidy
+  description: Installe Docker Engine et Docker Compose sur des serveurs Linux (Debian, Ubuntu)
+  license: MIT
+  min_ansible_version: "2.15"
+  platforms:
+    - name: Debian
+      versions:
+        - trixie
+    - name: Ubuntu
+      versions:
+        - noble
+  galaxy_tags:
+    - docker
+    - containers
+
+dependencies: []

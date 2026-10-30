@@ -1,0 +1,8 @@
+# Secrets
+.vault_pass
+*.key
+.env
+
+# Fichiers générés par Ansible / Python
+*.retry
+__pycache__/
