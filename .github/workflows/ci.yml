@@ -1,0 +1,46 @@
+---
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint et syntaxe Ansible
+    runs-on: ubuntu-latest
+    env:
+      ANSIBLE_CONFIG: ${{ github.workspace }}/ansible.cfg
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v7
+
+      - name: Installer Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Installer les outils
+        run: pip install ansible-core ansible-lint yamllint
+
+      - name: Fournir le mot de passe Vault
+        env:
+          VAULT_PASS: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+        run: |
+          printf '%s' "$VAULT_PASS" > "$RUNNER_TEMP/vault_pass"
+          echo "ANSIBLE_VAULT_PASSWORD_FILE=$RUNNER_TEMP/vault_pass" >> "$GITHUB_ENV"
+
+      - name: yamllint
+        run: yamllint .
+
+      - name: Vérification de syntaxe
+        run: ansible-playbook playbooks/docker.yml --syntax-check
+
+      - name: ansible-lint
+        run: ansible-lint
