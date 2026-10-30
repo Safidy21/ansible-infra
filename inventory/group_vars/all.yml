@@ -1,0 +1,4 @@
+---
+# Ajoute au groupe docker l'utilisateur avec lequel Ansible se connecte
+docker_users:
+  - "{{ ansible_user | default(lookup('env', 'USER')) }}"

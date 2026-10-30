@@ -1,3 +1,25 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# defaults file for docker
+# Paquets Docker à installer
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+
+# Canal du dépôt Docker : stable (production) ou test (toutes familles d'OS)
+docker_repo_channel: stable
+
+# Utilisateurs à ajouter au groupe docker (vide par défaut)
+docker_users: []
+
+# État du service Docker
+docker_service_state: started
+docker_service_enabled: true
+
+# Correspondance architecture du noyau -> architecture Debian/APT
+docker_arch_map:
+  x86_64: amd64
+  aarch64: arm64
+
+docker_apt_arch: "{{ docker_arch_map[ansible_facts['architecture']] }}"

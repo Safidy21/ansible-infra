@@ -1,3 +1,28 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# tasks file for docker
+- name: "Vérifier que l'OS et l'architecture sont supportés"
+  ansible.builtin.assert:
+    that:
+      - ansible_facts['os_family'] in docker_supported_os_families
+      - ansible_facts['architecture'] in docker_arch_map
+    fail_msg: >-
+      OS ou architecture non supporté :
+      {{ ansible_facts['os_family'] }} / {{ ansible_facts['architecture'] }}
+
+- name: Charger les variables de la famille d'OS
+  ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Installer Docker (famille {{ ansible_facts['os_family'] }})
+  ansible.builtin.include_tasks: "setup-{{ ansible_facts['os_family'] }}.yml"
+
+- name: Démarrer et activer le service Docker
+  ansible.builtin.service:
+    name: docker
+    state: "{{ docker_service_state }}"
+    enabled: "{{ docker_service_enabled }}"
+
+- name: Ajouter les utilisateurs au groupe docker
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  loop: "{{ docker_users }}"

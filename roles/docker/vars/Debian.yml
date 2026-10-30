@@ -1,0 +1,13 @@
+---
+# Paquets non officiels qui entrent en conflit avec Docker CE
+docker_conflicting_packages:
+  - docker.io
+  - docker-doc
+  - docker-compose
+  - podman-docker
+  - containerd
+  - runc
+
+# Prérequis pour télécharger la clé et utiliser un dépôt HTTPS
+docker_apt_prerequisites:
+  - ca-certificates

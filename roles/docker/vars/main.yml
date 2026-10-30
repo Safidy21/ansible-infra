@@ -1,0 +1,4 @@
+---
+# Familles d'OS pour lesquelles un setup-<famille>.yml existe et a été testé
+docker_supported_os_families:
+  - Debian
