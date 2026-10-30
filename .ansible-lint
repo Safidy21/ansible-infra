@@ -5,5 +5,3 @@ profile: production
 exclude_paths:
   - .git/
   - inventory/host_vars/*/vault.yml
-
-
