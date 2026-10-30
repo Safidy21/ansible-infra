@@ -1,0 +1,9 @@
+---
+# Niveau d'exigence le plus élevé : celui attendu pour du code de production
+profile: production
+
+exclude_paths:
+  - .git/
+  - inventory/host_vars/*/vault.yml
+
+
