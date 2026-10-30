@@ -1,0 +1,24 @@
+---
+- name: Supprimer les paquets en conflit avec Docker CE
+  ansible.builtin.dnf:
+    name: "{{ docker_conflicting_packages }}"
+    state: absent
+
+- name: Importer la clé GPG de Docker
+  ansible.builtin.rpm_key:
+    key: "{{ docker_rpm_repo_url }}/gpg"
+    state: present
+
+- name: Déclarer le dépôt Docker
+  ansible.builtin.yum_repository:
+    name: docker-ce-{{ docker_repo_channel }}
+    description: Docker CE {{ docker_repo_channel }} - $basearch
+    baseurl: "{{ docker_rpm_repo_url }}/$releasever/$basearch/{{ docker_repo_channel }}"
+    gpgcheck: true
+    gpgkey: "{{ docker_rpm_repo_url }}/gpg"
+    enabled: true
+
+- name: Installer les paquets Docker
+  ansible.builtin.dnf:
+    name: "{{ docker_packages }}"
+    state: present

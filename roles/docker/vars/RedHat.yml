@@ -1,0 +1,16 @@
+---
+# Paquets qui entrent en conflit avec Docker CE sur la famille RedHat
+docker_conflicting_packages:
+  - docker
+  - docker-client
+  - docker-client-latest
+  - docker-common
+  - docker-latest
+  - docker-latest-logrotate
+  - docker-logrotate
+  - docker-engine
+  - podman
+  - runc
+
+# Dépôt Docker utilisé pour Rocky Linux, AlmaLinux et RHEL
+docker_rpm_repo_url: https://download.docker.com/linux/rhel
