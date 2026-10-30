@@ -3,6 +3,9 @@
 *.key
 .env
 
+#Notes perso
+NOTES.md
+
 # Fichiers générés par Ansible / Python
 *.retry
 __pycache__/
