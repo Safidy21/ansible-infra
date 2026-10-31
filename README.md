@@ -112,4 +112,3 @@ Ansible et ses principes (idempotence, rôles, Vault) m'étaient familiers. Ce p
   et prenait la clé `on:` du workflow pour un booléen. C'est la même cause que l'inventaire « non chargé » d'Ansible : je lance toujours depuis la racine.
 - **GitHub Actions, comparé à GitLab CI** : mêmes concepts (déclencheurs, jobs, runners, secrets), mais plusieurs workflows dans `.github/workflows/`,
   des jobs parallèles par défaut que l'on ordonne avec `needs`, et surtout un code qui n'est pas cloné automatiquement : `actions/checkout` est obligatoire.
-EOF
