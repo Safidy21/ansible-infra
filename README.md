@@ -22,22 +22,7 @@ Ce dépôt en est la réécriture, avec trois objectifs :
 
 ## Architecture du lab
 
-```
-                         GitHub
-              ┌────────────────────────────┐
-  Pull Request│  GitHub Actions (CI)        │
-  ───────────►│  yamllint → syntax-check →  │──► ✅ fusion autorisée dans main
-              │  ansible-lint (production)  │
-              └────────────────────────────┘
-
-  VMware Workstation (réseau NAT)
-  ┌───────────────────────────┐      SSH (clé dédiée)     ┌──────────────────────┐
-  │ lab-srv                   │ ────────────────────────► │ lab-node01           │
-  │ Debian 13 (trixie)        │                           │ Ubuntu 24.04 (noble) │
-  │ control node Ansible      │                           │ cible distante       │
-  │ + cible (connexion local) │                           └──────────────────────┘
-  └───────────────────────────┘
-```
+![Architecture du lab ansible-infra](docs/architecture.svg)
 
 ## Lancer le lab
 
@@ -91,6 +76,7 @@ l'utilisateur de connexion Ansible (`ansible_user`).
 ```
 ansible-infra/
 ├── ansible.cfg                  # inventaire et chemin des rôles
+├── docs/architecture.svg        # schéma d'architecture
 ├── .github/workflows/ci.yml     # CI : yamllint, syntax-check, ansible-lint
 ├── inventory/
 │   ├── hosts.ini                # machines, groupées par OS
