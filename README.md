@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # ansible-infra
 
 [![CI](https://github.com/Safidy21/ansible-infra/actions/workflows/ci.yml/badge.svg)](https://github.com/Safidy21/ansible-infra/actions/workflows/ci.yml)
@@ -20,7 +19,6 @@ Ce dépôt en est la réécriture, avec trois objectifs :
 - **idempotent** : une deuxième exécution ne modifie rien (`changed=0`) ;
 - **vérifié** : linting automatique à chaque Pull Request.
 
-Il sert de base à mes autres labs (`monitoring-stack`, `mailcow-ansible-lab`).
 
 ## Architecture du lab
 
